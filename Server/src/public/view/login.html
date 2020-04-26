@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        *, *::before, *::after{
+            box-sizing: border-box;
+            font-family: 'Open Sans Condensed', sans-serif;
+            text-decoration: none;
+            color: black;
+            margin:0;
+            padding:0;
+        }
+        body {
+            margin:0;
+            padding:0;
+        }
+        .container{
+            transition: 1s;
+            background-color: #FAFAFA;
+            display: grid;
+            min-height: 100vh;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 1280px) minmax(0px, 1fr);
+            grid-template-rows: 150px 1fr 100px;
+            background-color: rgb(180, 102, 102);
+        }
+        .content {
+            min-width: 540px;
+            max-width: 1120px;
+        }
+        .arrow {
+            min-width: 60px;
+        }
+        .top {
+            display: grid;
+            grid-template-columns: minmax(380px, 2fr) 3fr minmax(100px, 2fr);
+            grid-template-rows: 1fr;
+            grid-column: 1/4;
+            grid-row: 1;
+            background-color: aliceblue;
+        }
+        .top-logo {
+            display: flex;
+            font-size: 32px;
+            justify-content: center;
+            align-items: center;
+            grid-column:1;
+        }
+        .top-logo .logo-text {
+            display: inline-block;
+            text-align: start;
+        }
+        .top-logo .logo-text p::first-letter{
+            color:red;
+        }
+        .top-nav {
+            display: grid;
+            grid-gap: 25px;
+            grid-template-columns: 2fr 3fr 2fr;
+            grid-column:2;
+        }
+        .top-nav a {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 24px;
+            border: 1px solid black;
+            align-self: center;
+            height: 80px;
+        }
+        .top-profile {
+            display: flex;
+            justify-content: end;
+            align-self: center;
+            text-align: end;
+            grid-column:3;
+        }
+        .top-profile a{
+            border: 1px solid black;
+            box-shadow: 0 0 1px black;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .top-profile a img {
+            width: 35px;
+        }
+        .middle {    
+            grid-column: 2;
+            grid-row: 2;
+            background-color: blue;
+        }
+        .login-form {
+            transition: 1s;
+            opacity: 1;
+            display: flex;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 300px;
+            width: 300px;
+            background-color: #fff;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .foot {
+            background-color: green;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+        @media screen and (max-width: 540px) {
+            .logo-text p span{
+                display: none;
+            }
+            .logo-text p {
+                display:inline;
+            }
+        }
+        .top a:hover {
+            transition: all 0.5s;
+            background-color: rgba(0, 0, 255, 0.2)
+        }
+        .hidden {
+            display:none;
+            opacity:0;
+        }
+        .cover {
+            transition: 1s;
+            opacity: 1;
+            position: absolute;
+            height:100%;
+            width:100%;
+        }
+        .dark {
+            filter: brightness(0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="top content">
+            <a class="top-logo" href="">
+                <img src="..\img\ieu-logo.png" alt="Логотип института"><div class="logo-text"><p>И<span>НСТИТУТ</span></p><p>Э<span>КОНОМИКИ</span> И </p><p>У<span>ПРАВЛЕНИЯ</span> </p></div>
+            </a>
+            <nav class="top-nav">
+                <a href="">Новости</a>
+                <a href="">Расписание</a>
+                <a href="">Оценки</a>
+            </nav>
+            <div class="top-profile">
+                <a v-bind:href="#" id='profile'>
+                    <img src="..\img\login-arrow-outline.png" alt="Иконка профиля">
+                </a>
+            </div>
+        </header>  
+        <main class="middle">
+
+        </main>
+        <footer class="foot">
+
+        </footer>
+
+        <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
+        <div class="cover hidden"></div>
+    </div>
+
+    <form class="login-form hidden" name=login id="login_app">
+        <p>{{login}}</p>
+        <p>{{password}}</p>
+        <input name="login" v-model="login">
+        <input name="password" v-model="password">
+        <p>{{responce}}</p>
+        <p>У вас нет аккаунта? Зарегестрируйтесь</p>
+        <button id="registr_button">Регистрация</button>
+        <button id="submit_button" v-on:click="myFunc">Войти</button>
+    </form>
+
+    <script src="..\script\login.js"></script>
+    <script>
+            let profile = document.getElementById('profile');
+            let cover = document.querySelector('.cover');
+            let loginForm = document.querySelector('.login-form');
+            let container = document.querySelector('.container');
+            
+            cover.addEventListener('click', (e)=>{
+                e.preventDefault();
+                container.classList.toggle("dark");
+                cover.classList.toggle("hidden");
+                loginForm.classList.toggle("hidden");
+            });
+            profile.addEventListener('click', (e)=>{
+                e.preventDefault();
+                container.classList.toggle("dark");
+                cover.classList.toggle("hidden");
+                loginForm.classList.toggle("hidden");
+            });
+    </script>
+</body>
+</html>
