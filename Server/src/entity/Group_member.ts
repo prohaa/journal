@@ -8,8 +8,8 @@ export class Group_member {
   id: string;
 
   @ManyToOne(type => University_member, university_member => university_member.id)
-  member_id: University_member;
+  member: University_member;
 
   @ManyToOne(type => Group, group => group.id)
-  group_id: Group;
+  group: Group;
 }

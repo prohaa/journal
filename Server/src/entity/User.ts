@@ -19,9 +19,6 @@ export class User {
     password: string;
 
     @Column('varchar')
-    perm_name: string; 
-
-    @Column('varchar')
     first_name: string; 
 
     @Column('varchar')

@@ -27,15 +27,15 @@ export class Lesson {
   id: string;
 
   @ManyToOne(type => University_member, university_member => university_member.id)
-  member_id: University_member;
+  member: University_member;
 
   @ManyToOne(type => Subject, subject => subject.id)
-  subject_id: Subject;
+  subject: Subject;
   
   @ManyToOne(type => Group, group => group.id)
-  group_id: Group;
+  group: Group;
 
-  @CreateDateColumn({type:'date'})
+  @Column("date")
   date: Date;
 
   @Column("enum", { enum: time })

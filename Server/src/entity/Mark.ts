@@ -7,7 +7,7 @@ export class Mark {
     id: string;
 
     @ManyToOne(type => Status, status => status.id)
-    status_id: Status;
+    status: Status;
 
     @Column("int")
     mark: number;

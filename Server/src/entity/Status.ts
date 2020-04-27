@@ -8,10 +8,10 @@ export class Status {
   id: string;
 
   @ManyToOne(type => Lesson, lesson => lesson.id)
-  group_member_id: Lesson;
+  group_member: Lesson;
 
   @ManyToOne(type => Group_member, group_member => group_member.id)
-  lesson_id: Group_member;
+  lesson: Group_member;
 
   @Column('bool')
   Status: boolean;

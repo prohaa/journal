@@ -1,4 +1,3 @@
-import { bcrypt } from 'bcrypt';
 
 // import {app} from "./server/express";
 
@@ -13,12 +12,14 @@ import * as bodyParser from  "body-parser";
 import {createConnection} from "typeorm";
 import {getRepository} from "typeorm";
 import {User} from "./entity/User";
+import {Lesson} from "./entity/Lesson";
 import db from "./server/dbMethods";
 import config from "./server/config";
 import * as jwt from "jsonwebtoken";
 
 createConnection().then(connection => {
   const userRepository = connection.getRepository(User);
+  const lessonRepository = connection.getRepository(Lesson);
   const app = express();
   const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -34,6 +35,15 @@ createConnection().then(connection => {
   app.get("/users", async function(req: Request, res: Response) {
     const users = await userRepository.find();
     res.json(users);
+  });
+
+  app.get("/list", async function(req: Request, res: Response) {
+    // const lessons = await lessonRepository.find();
+    // const data = await connection.createQueryBuilder()
+    // .leftJoinAndSelect()
+    // .where()
+    // .getMany();
+    // res.json(data);
   });
 
   app.post("/users", async function(req: Request, res: Response) {
@@ -143,10 +153,6 @@ createConnection().then(connection => {
         res.send(error);
         console.log('login error');
       }
-
-
-
-
 
 
       // db.selectByEmail(req.body.email, (err, user) => {

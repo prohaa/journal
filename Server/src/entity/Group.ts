@@ -1,5 +1,4 @@
 import {Entity, PrimaryGeneratedColumn, ManyToOne, Column} from "typeorm";
-import {Direction} from "./Direction";
 import {Division} from "./Division";
 
 enum course {
@@ -16,10 +15,10 @@ export class Group {
     id: string; 
 
     @ManyToOne(type => Division, division => division.id)
-    division_id: Division;
+    division: Division;
 
-    @ManyToOne(type => Direction, direction => direction.id)
-    direction_id: Direction;
+    @Column('varchar')
+    direction_name: string;
 
     @Column("enum", { enum: course })
     course: string;
