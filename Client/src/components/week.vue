@@ -1,21 +1,23 @@
 <template>
   <div>
-    <day>понедельник</day>
-    <day></day>
-    <day></day>
-    <day></day>
-    <day></day>
+    {{resp}}
   </div>
 </template>
 
 <script>
-import day from './day'
+// import day from './day'
 export default {
+  props: {
+    resp: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
-
+    return {}
   },
   components: {
-    day
+    // day
   }
 }
 </script>
